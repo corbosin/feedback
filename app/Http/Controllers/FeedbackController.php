@@ -25,7 +25,7 @@ class FeedbackController extends Controller
             'attach' => $request->file('attach'),
         );
 
-        Feedback::create($data);
+         Feedback::create($data);
 
         Mail::to('manager@mail.ru')->send(new Query($data, $request));
 

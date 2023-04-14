@@ -50,6 +50,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">id</th>
                 <th scope="col">Имя</th>
                 <th scope="col">Email</th>
                 <th scope="col">Тема</th>
@@ -60,6 +61,7 @@
         <tbody>
             @foreach($feedbacks as $feedback)
             <tr>
+                <td>{{$feedback->id}}</td>
                 <td>{{$feedback->name}}</td>
                 <td>{{$feedback->email}}</td>
                 <td>{{$feedback->theme}}</td>
