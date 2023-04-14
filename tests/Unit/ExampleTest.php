@@ -1,16 +1,25 @@
 <?php
 
-namespace Tests\Unit;
+use Tests\TestCase;
 
-use PHPUnit\Framework\TestCase;
-
-class ExampleTest extends TestCase
+class FeedbackControllerTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_that_true_is_true(): void
+    public function test_send_feedback_returns_expected_result()
     {
-        $this->assertTrue(true);
+        $data = [
+            'name' => 'YA',
+            'email' => 'ya@example.com',
+            'theme' => 'theme',
+            'message' => 'message',
+            'attach' => null,
+        ];
+
+        $request = new \Illuminate\Http\Request($data);
+
+        $feedbackController = new FeedbackController();
+        $response = $feedbackController->send($request);
+
+        $this->assertEquals($response->getStatusCode(), 302);
+        $this->assertEquals($response->getSession()->get('status'), 'Ваше сообщение отправлено!');
     }
 }
